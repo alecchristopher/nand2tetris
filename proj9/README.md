@@ -3,7 +3,8 @@
 #### Sand Simulator
 Simulates sand falling and pilling up. 
 
-![demo](./demo.png)
+[demo](https://user-images.githubusercontent.com/82064813/115442981-852fd380-a1c7-11eb-8e54-38eab49534fd.PNG)
+
 
 #### How to Run. 
 Using the VMEmulator provided by the Nand2Tetris Tools, select the entire "sandSim" directory as an input. After program starts, move the source of sand using the left and right arrow keys. 
