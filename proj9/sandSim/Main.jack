@@ -1,0 +1,21 @@
+
+class Main {
+	function void main() {
+		var Scene s;
+		let s = Scene.new();
+		do s.run();
+		do s.dispose();
+		return;
+		
+		/**
+		var Array2D arr;
+		var int res;
+		let arr = Array2D.new(64, 128);
+		do arr.set(63, 127, 1);
+		let res = arr.get(63, 127);
+		do Output.println();
+		do Output.printInt(res);
+		
+		return;*/
+	}
+}

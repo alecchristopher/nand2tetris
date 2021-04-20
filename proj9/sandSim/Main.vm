@@ -1,0 +1,11 @@
+function Main.main 1
+call Scene.new 0
+pop local 0
+push local 0
+call Scene.run 1
+pop temp 0
+push local 0
+call Scene.dispose 1
+pop temp 0
+push constant 0
+return

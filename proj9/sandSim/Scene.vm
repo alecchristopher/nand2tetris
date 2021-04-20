@@ -1,0 +1,430 @@
+function Scene.new 0
+push constant 8
+call Memory.alloc 1
+pop pointer 0
+push constant 4
+pop this 5
+push constant 256
+pop this 3
+push constant 512
+pop this 4
+push this 3
+push this 5
+call Math.divide 2
+pop this 1
+push this 4
+push this 5
+call Math.divide 2
+pop this 2
+push this 1
+push this 2
+call Array2D.new 2
+pop this 0
+push this 0
+push constant 0
+push constant 0
+push constant 1
+call Array2D.set 4
+pop temp 0
+call Controller.new 0
+pop this 6
+push pointer 0
+return
+function Scene.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push this 0
+call Array2D.dispose 1
+pop temp 0
+push this 6
+call Controller.dispose 1
+pop temp 0
+push constant 0
+return
+function Scene.run 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+not
+not
+if-goto WHILE_END0
+call Screen.clearScreen 0
+pop temp 0
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 7
+label IF_FALSE0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+pop local 1
+label IF_FALSE1
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 3
+pop this 7
+label IF_FALSE2
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 4
+pop this 7
+label IF_FALSE3
+push pointer 0
+call Scene.move_square 1
+pop temp 0
+push pointer 0
+call Scene.drop_at_cursor 1
+pop temp 0
+push pointer 0
+call Scene.draw 1
+pop temp 0
+push pointer 0
+call Scene.physics 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Scene.move_square 0
+push argument 0
+pop pointer 0
+push this 7
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push this 7
+push constant 3
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 6
+call Controller.move_left 1
+pop temp 0
+label IF_FALSE1
+push this 7
+push constant 4
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 6
+call Controller.move_right 1
+pop temp 0
+label IF_FALSE2
+push constant 0
+return
+function Scene.drop_at_cursor 2
+push argument 0
+pop pointer 0
+push this 6
+call Controller.x 1
+pop local 0
+push this 6
+call Controller.y 1
+pop local 1
+push this 0
+push local 0
+push local 1
+push constant 1
+call Array2D.set 4
+pop temp 0
+push constant 0
+return
+function Scene.draw 7
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+call Math.multiply 2
+pop local 6
+push constant 0
+pop local 2
+label WHILE_EXP0
+push local 2
+push local 6
+lt
+not
+if-goto WHILE_END0
+push this 0
+push local 2
+call Array2D.get_direct 2
+pop local 3
+push local 3
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push local 2
+push this 1
+call Math.divide 2
+pop local 0
+push local 2
+push local 0
+push this 1
+call Math.multiply 2
+sub
+pop local 1
+push local 0
+push this 5
+call Math.multiply 2
+pop local 4
+push local 1
+push this 5
+call Math.multiply 2
+pop local 5
+push local 4
+push local 5
+push local 4
+push this 5
+add
+push local 5
+push this 5
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Scene.physics 10
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+call Math.multiply 2
+pop local 6
+push local 6
+pop local 2
+label WHILE_EXP0
+push local 2
+push constant 1
+neg
+gt
+not
+if-goto WHILE_END0
+push this 0
+push local 2
+call Array2D.get_direct 2
+pop local 3
+push local 3
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 2
+push this 1
+call Math.divide 2
+pop local 0
+push local 2
+push local 0
+push this 1
+call Math.multiply 2
+sub
+pop local 1
+push local 1
+push constant 2
+add
+push this 1
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 0
+push local 1
+push constant 1
+add
+push local 0
+call Array2D.get 3
+pop local 8
+push local 8
+push constant 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 0
+push local 1
+push local 0
+push constant 0
+call Array2D.set 4
+pop temp 0
+push this 0
+push local 1
+push constant 1
+add
+push local 0
+push constant 1
+call Array2D.set 4
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push local 0
+push constant 0
+gt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 0
+push local 1
+push constant 1
+add
+push local 0
+push constant 1
+sub
+call Array2D.get 3
+pop local 7
+push local 7
+push constant 0
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 0
+push local 1
+push local 0
+push constant 0
+call Array2D.set 4
+pop temp 0
+push this 0
+push local 1
+push constant 1
+add
+push local 0
+push constant 1
+sub
+push constant 1
+call Array2D.set 4
+pop temp 0
+goto IF_END4
+label IF_FALSE4
+push this 0
+push local 1
+push constant 1
+add
+push local 0
+push constant 1
+add
+call Array2D.get 3
+pop local 9
+push local 9
+push constant 0
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 0
+push local 1
+push local 0
+push constant 0
+call Array2D.set 4
+pop temp 0
+push this 0
+push local 1
+push constant 1
+add
+push local 0
+push constant 1
+add
+push constant 1
+call Array2D.set 4
+pop temp 0
+label IF_FALSE5
+label IF_END4
+goto IF_END3
+label IF_FALSE3
+push local 0
+push this 2
+lt
+push constant 2
+sub
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 0
+push local 1
+push constant 1
+add
+push local 0
+push constant 1
+add
+call Array2D.get 3
+pop local 9
+push local 9
+push constant 0
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push this 0
+push local 1
+push local 0
+push constant 0
+call Array2D.set 4
+pop temp 0
+push this 0
+push local 1
+push constant 1
+add
+push local 0
+push constant 1
+add
+push constant 1
+call Array2D.set 4
+pop temp 0
+label IF_FALSE7
+label IF_FALSE6
+label IF_END3
+label IF_END2
+label IF_FALSE1
+label IF_FALSE0
+push local 2
+push constant 1
+sub
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return

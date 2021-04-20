@@ -1,0 +1,46 @@
+class Controller {
+	field int xpos, ypos;
+	field boolean produce;
+	
+	constructor Controller new () {
+		let xpos = 0;
+		let ypos = 0;
+		return this;
+	}
+	
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+	
+	method int x() {
+		return xpos;
+	}
+	
+	method int y() {
+		return ypos;
+	}
+	
+	method void move_right() {
+		if (ypos < 126){
+			let ypos = ypos + 1;
+		}
+		return;
+	}
+
+	method void move_left() {
+		if ( ypos -1 > -1){
+			let ypos = ypos - 1;
+		}
+		return;
+	}
+	
+	method boolean produce(){
+		return produce;
+	}
+	
+	method void start(){
+		let produce = ~produce;
+		return;
+	}
+}

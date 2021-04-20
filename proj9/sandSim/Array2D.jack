@@ -1,0 +1,54 @@
+class Array2D{
+	field Array arr;
+	field int cols;
+	
+	// rows travel horizontally
+	// cols tavel vertically 
+	// Screen of 512 rows and 256 cols each
+	constructor Array2D new( int x, int y) {
+		var int size;
+		var int i;
+		let size = x * y;
+		let cols = x;
+		let arr = Array.new(size);
+		let i = 0;
+		while(i < size){
+			let arr[i] = 0;
+			let i = i + 1;
+		}
+		return this;
+	}
+	
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+	
+	method void set( int x, int y, int val){
+		var int index;
+		let index = ( y * cols )+ x;
+		// do Output.printInt(index);
+		// do Output.printString(" | ");
+		let arr[index] = val;
+		return;
+	}
+	
+	method int get( int x, int y){
+		var int index;
+		var int res;
+		let index = ( y * cols )+ x;
+		/**do Output.printInt(cols);
+		do Output.printString(" | ");
+		do Output.printInt(x);
+		do Output.printString("-");
+		do Output.printInt(y);
+		do Output.printString("/");
+		do Output.printInt(index);*/
+		let res = arr[index];
+		return res;
+	}
+	
+	method int get_direct(int index){
+		return arr[index];
+	}
+}
